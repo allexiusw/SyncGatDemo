@@ -2,6 +2,7 @@ package org.allex.task.syngatdemo;
 
 import android.app.Activity;
 import android.os.Bundle;
+<<<<<<< HEAD
 import com.couchbase.lite.CouchbaseLite;
 import android.content.Context;
 import android.util.Log;
