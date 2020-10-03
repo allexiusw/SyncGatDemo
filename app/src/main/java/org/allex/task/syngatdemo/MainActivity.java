@@ -45,7 +45,8 @@ public class MainActivity extends Activity {
         // Create a new document (i.e. a record) in the database.
         MutableDocument mutableDoc = new MutableDocument()
                 .setString("name", "Tarea desde Android")
-                .setBoolean("status", false);
+                .setBoolean("status", false)
+                .setString("codigo", "SMIS038555");
 
         // Save it to the database.
 
@@ -60,7 +61,7 @@ public class MainActivity extends Activity {
         // Create a query to fetch documents of type SDK.
         Query query = QueryBuilder.select(SelectResult.all())
                 .from(DataSource.database(database))
-                .where(Expression.property("status").equalTo(Expression.booleanValue(false)));
+                .where(Expression.property("codigo").equalTo(Expression.string("SMIS038555")));
 
         ResultSet result = null;
         try {
@@ -68,6 +69,7 @@ public class MainActivity extends Activity {
         } catch (CouchbaseLiteException e) {
             e.printStackTrace();
         }
+        Log.i("success", String.valueOf(result.allResults().size()));
         for (Result r : result) {
             //Log.i("success", r.toString(0));
             //Log.i("success", r.getString(1));
