@@ -37,7 +37,7 @@ public class MainActivity extends Activity {
         // Get the database (and create it if it doesn’t exist).
         DatabaseConfiguration config = new DatabaseConfiguration(context);
         try {
-            database = new Database("ugb", config);
+            database = new Database(BuildConfig.DB, config);
         } catch (CouchbaseLiteException e) {
             e.printStackTrace();
         }
@@ -78,7 +78,7 @@ public class MainActivity extends Activity {
 
         Endpoint targetEndpoint = null;
         try {
-            targetEndpoint = new URLEndpoint(new URI("urlaqui"));
+            targetEndpoint = new URLEndpoint(new URI(BuildConfig.ENDPOINT));
         } catch (URISyntaxException e) {
             e.printStackTrace();
         }
@@ -86,7 +86,7 @@ public class MainActivity extends Activity {
         ReplicatorConfiguration replConfig = new ReplicatorConfiguration(database, targetEndpoint);
         replConfig.setReplicatorType(ReplicatorConfiguration.ReplicatorType.PUSH_AND_PULL);
         // Add authentication.
-        replConfig.setAuthenticator(new BasicAuthenticator("user", "pass"));
+        replConfig.setAuthenticator(new BasicAuthenticator(BuildConfig.USER, BuildConfig.PASSWORD));
 
         // Create replicator (be sure to hold a reference somewhere that will prevent the Replicator from being GCed)
         Replicator replicator = new Replicator(replConfig);
