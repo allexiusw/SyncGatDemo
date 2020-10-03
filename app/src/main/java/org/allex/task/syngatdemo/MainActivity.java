@@ -4,11 +4,25 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.content.Context;
 import android.util.Log;
-
 import com.couchbase.lite.CouchbaseLiteException;
 import com.couchbase.lite.DatabaseConfiguration;
 import com.couchbase.lite.Database;
 import com.couchbase.lite.MutableDocument;
+import com.couchbase.lite.Query;
+import com.couchbase.lite.QueryBuilder;
+import com.couchbase.lite.SelectResult;
+import com.couchbase.lite.DataSource;
+import com.couchbase.lite.Expression;
+import com.couchbase.lite.ResultSet;
+import com.couchbase.lite.Result;
+import com.couchbase.lite.URLEndpoint;
+import com.couchbase.lite.Endpoint;
+import java.net.URI;
+import java.net.URISyntaxException;
+import com.couchbase.lite.BasicAuthenticator;
+import com.couchbase.lite.Replicator;
+
+import com.couchbase.lite.ReplicatorConfiguration;
 
 public class MainActivity extends Activity {
 
@@ -31,7 +45,7 @@ public class MainActivity extends Activity {
         // Create a new document (i.e. a record) in the database.
         MutableDocument mutableDoc = new MutableDocument()
                 .setString("name", "Tarea desde Android")
-                .setBoolean("status", true);
+                .setBoolean("status", false);
 
         // Save it to the database.
 
@@ -43,5 +57,48 @@ public class MainActivity extends Activity {
             Log.e("Error", "Error al guardar");
         }
 
+        // Create a query to fetch documents of type SDK.
+        Query query = QueryBuilder.select(SelectResult.all())
+                .from(DataSource.database(database))
+                .where(Expression.property("status").equalTo(Expression.booleanValue(false)));
+
+        ResultSet result = null;
+        try {
+            result = query.execute();
+        } catch (CouchbaseLiteException e) {
+            e.printStackTrace();
+        }
+        for (Result r : result) {
+            //Log.i("success", r.toString(0));
+            //Log.i("success", r.getString(1));
+            //Log.i("success", r.getString(2));
+        }
+
+        // Create replicators to push and pull changes to and from the cloud.
+
+        Endpoint targetEndpoint = null;
+        try {
+            targetEndpoint = new URLEndpoint(new URI("urlaqui"));
+        } catch (URISyntaxException e) {
+            e.printStackTrace();
+        }
+
+        ReplicatorConfiguration replConfig = new ReplicatorConfiguration(database, targetEndpoint);
+        replConfig.setReplicatorType(ReplicatorConfiguration.ReplicatorType.PUSH_AND_PULL);
+        // Add authentication.
+        replConfig.setAuthenticator(new BasicAuthenticator("user", "pass"));
+
+        // Create replicator (be sure to hold a reference somewhere that will prevent the Replicator from being GCed)
+        Replicator replicator = new Replicator(replConfig);
+
+        // Listen to replicator change events.
+        replicator.addChangeListener(change -> {
+            if (change.getStatus().getError() != null) {
+                Log.i("error", "Error code ::  " + change.getStatus().getError().getCode());
+            }
+        });
+
+// Start replication.
+        replicator.start();
     }
 }
