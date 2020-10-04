@@ -59,19 +59,12 @@ public class MainActivity extends Activity {
             Log.e("Error", "Error al guardar");
         }
 
-        // Create a query to fetch documents of type SDK.
-        Query query = QueryBuilder.select(SelectResult.all())
-                .from(DataSource.database(database))
-                .where(Expression.property("codigo").equalTo(Expression.string("SMIS038555")));
+        // Create a query .property("codigo").equalTo(Expression.string("SMIS038555")));
 
-        ResultSet result = null;
-        try {
-            result = query.execute();
-        } catch (CouchbaseLiteException e) {
+        ResultSet result =LiteException e) {
             e.printStackTrace();
         }
-        Log.i("success", String.valueOf(result.allResults().size()));
-        for (Result r : result) {
+        Log.i("success", Ssult) {
             //Log.i("success", r.toString(0));
             //Log.i("success", r.getString(1));
             //Log.i("success", r.getString(2));

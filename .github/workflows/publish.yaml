@@ -1,4 +1,4 @@
-name: Android Feature Branch CI
+name: Android Feature Publishing app to playstore
 
 on: release
 
@@ -14,9 +14,9 @@ jobs:
     - name: Upload Android Release to Play Store
       uses: r0adkll/upload-google-play@v1
       with:
-        serviceAccountJson: ${{ SERVICE_ACCOUNT_JSON }}
+        serviceAccountJson: ${{ secrets.SERVICE_ACCOUNT_JSON }}
         packageName: allex.example.org
-        releaseFile: ${{ SIGNED_RELEASE_FILE}}
+        releaseFile: ${{ secrets.SIGNED_RELEASE_FILE}}
         track: beta
         userFraction: 0.33
         whatsNewDirectory: distribution/whatsnew
