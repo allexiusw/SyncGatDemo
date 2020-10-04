@@ -11,9 +11,19 @@ android {
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
+        debug {
+            buildConfigField("String", "DB", "\"db\"")
+            buildConfigField("String", "USER", "\"user\"")
+            buildConfigField("String", "PASSWORD", "\"pass\"")
+            buildConfigField("String", "ENDPOINT", "\"ws://IP:4984/db\"")
+        }
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            buildConfigField("String", "DB", "\"db\"")
+            buildConfigField("String", "USER", "\"user\"")
+            buildConfigField("String", "PASSWORD", "\"pass\"")
+            buildConfigField("String", "ENDPOINT", "\"ws://IP:4984/db\"")
         }
     }
     compileOptions {
