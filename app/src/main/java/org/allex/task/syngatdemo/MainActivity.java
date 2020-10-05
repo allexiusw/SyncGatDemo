@@ -4,10 +4,13 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.content.Context;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.couchbase.lite.CouchbaseLiteException;
 import com.couchbase.lite.DatabaseConfiguration;
 import com.couchbase.lite.Database;
+import com.couchbase.lite.Dictionary;
+import com.couchbase.lite.Meta;
 import com.couchbase.lite.MutableDocument;
 import com.couchbase.lite.Query;
 import com.couchbase.lite.QueryBuilder;
@@ -40,40 +43,43 @@ public class MainActivity extends Activity {
         try {
             database = new Database(BuildConfig.DB, config);
         } catch (CouchbaseLiteException e) {
-            e.printStackTrace();
+            Log.e("error", e.getMessage());
         }
+
 
         // Create a new document (i.e. a record) in the database.
         MutableDocument mutableDoc = new MutableDocument()
                 .setString("name", "Tarea desde Android")
-                .setBoolean("status", false);
-
+                .setBoolean("status", true);
+        Toast.makeText(this, mutableDoc.getId(), Toast.LENGTH_SHORT).show();
         // Save it to the database.
-
         try {
             database.save(mutableDoc);
             Log.i("success", "Datos guardados");
         } catch (CouchbaseLiteException e) {
-            e.printStackTrace();
             Log.e("Error", "Error al guardar");
         }
 
         // Create a query to fetch documents of type SDK.
-        Query query = QueryBuilder.select(SelectResult.all())
+        Query query = QueryBuilder.select(SelectResult.expression(Meta.id),
+                SelectResult.property("name"),
+                SelectResult.property("status"))
                 .from(DataSource.database(database))
-                .where(Expression.property("status").equalTo(Expression.booleanValue(false)));
+                .where(Expression.property("status").equalTo(Expression.booleanValue(true)));
 
-        ResultSet result = null;
+
         try {
-            result = query.execute();
-        } catch (CouchbaseLiteException e) {
-            e.printStackTrace();
+            ResultSet result = query.execute();
+            for (Result r : result) {
+                Log.i("success", r.getString(0));
+                Log.i("success", r.getString("name"));
+                Log.i("success", String.valueOf(r.getBoolean("status")));
+                Log.i("success", "-----------------------------");
+            }
+        } catch (Exception e) {
+            Log.e("error", e.getMessage());
         }
-        for (Result r : result) {
-            //Log.i("success", r.toString(0));
-            //Log.i("success", r.getString(1));
-            //Log.i("success", r.getString(2));
-        }
+
 
         // Create replicators to push and pull changes to and from the cloud.
 
@@ -81,7 +87,7 @@ public class MainActivity extends Activity {
         try {
             targetEndpoint = new URLEndpoint(new URI(BuildConfig.ENDPOINT));
         } catch (URISyntaxException e) {
-            e.printStackTrace();
+            Log.e("error", e.getMessage());
         }
 
         ReplicatorConfiguration replConfig = new ReplicatorConfiguration(database, targetEndpoint);
