@@ -27,6 +27,16 @@ public class Persona {
         IsPersona = isPersona;
     }
 
+    public Persona(String id, String primerNombre, String segundoNombre, String primerApellido,
+                   String segundoApellido, Date fechaNacimiento) {
+        Id = id;
+        PrimerNombre = primerNombre;
+        SegundoNombre = segundoNombre;
+        PrimerApellido = primerApellido;
+        SegundoApellido = segundoApellido;
+        FechaNacimiento = fechaNacimiento;
+    }
+
     public Persona(String primerNombre, String segundoNombre, String primerApellido,
                    String segundoApellido, Date fechaNacimiento) {
         PrimerNombre = primerNombre;
@@ -34,6 +44,12 @@ public class Persona {
         PrimerApellido = primerApellido;
         SegundoApellido = segundoApellido;
         FechaNacimiento = fechaNacimiento;
+    }
+
+    public Persona(String id, String primerNombre, String primerApellido) {
+        Id = id;
+        PrimerNombre = primerNombre;
+        PrimerApellido = primerApellido;
     }
 
     public String getId() {
