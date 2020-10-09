@@ -3,10 +3,12 @@ package org.allex.task.syngatdemo.Services;
 import android.content.Context;
 import android.util.Log;
 
+import com.couchbase.lite.CouchbaseLiteException;
 import com.couchbase.lite.DataSource;
 import com.couchbase.lite.Document;
 import com.couchbase.lite.Expression;
 import com.couchbase.lite.Meta;
+import com.couchbase.lite.MutableDocument;
 import com.couchbase.lite.Query;
 import com.couchbase.lite.QueryBuilder;
 import com.couchbase.lite.Result;
@@ -55,5 +57,24 @@ public class PersonaService implements IPersonaService {
                 document.getString("SegundoNombre"), document.getString("PrimerApellido"),
                 document.getString("SegundoApellido"), document.getDate("FechaNacimiento")) : null;
         return persona;
+    }
+
+    public String create(Persona persona){
+        MutableDocument mutableDoc = new MutableDocument()
+                .setString("PrimerNombre", persona.getPrimerApellido())
+                .setString("SegundoNombre", persona.getSegundoApellido())
+                .setString("PrimerApellido", persona.getPrimerApellido())
+                .setString("SegundoApellido", persona.getSegundoApellido())
+                .setDate("FechaNacimiento", persona.getFechaNacimiento())
+                .setBoolean("IsDeleted", false)
+                .setBoolean("IsPersona", true);
+        String id = "";
+        try {
+            _dataContext.getDatabase().save(mutableDoc);
+            id = mutableDoc.getId();
+        } catch (CouchbaseLiteException ex) {
+            Log.e("error", ex.getMessage());
+        }
+        return id;
     }
 }
