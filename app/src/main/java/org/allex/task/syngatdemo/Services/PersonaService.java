@@ -4,6 +4,7 @@ import android.content.Context;
 import android.util.Log;
 
 import com.couchbase.lite.DataSource;
+import com.couchbase.lite.Document;
 import com.couchbase.lite.Expression;
 import com.couchbase.lite.Meta;
 import com.couchbase.lite.Query;
@@ -46,5 +47,13 @@ public class PersonaService implements IPersonaService {
             Log.e("error", e.getMessage());
         }
         return personas;
+    }
+
+    public Persona getById(String id){
+        Document document = _dataContext.getDatabase().getDocument(id);
+        Persona persona = document != null ? new Persona(document.getId(), document.getString("PrimerNombre"),
+                document.getString("SegundoNombre"), document.getString("PrimerApellido"),
+                document.getString("SegundoApellido"), document.getDate("FechaNacimiento")) : null;
+        return persona;
     }
 }

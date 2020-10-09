@@ -27,8 +27,9 @@ public class Persona {
         IsPersona = isPersona;
     }
 
-    public Persona(String primerNombre, String segundoNombre, String primerApellido,
+    public Persona(String id, String primerNombre, String segundoNombre, String primerApellido,
                    String segundoApellido, Date fechaNacimiento) {
+        Id = id;
         PrimerNombre = primerNombre;
         SegundoNombre = segundoNombre;
         PrimerApellido = primerApellido;
