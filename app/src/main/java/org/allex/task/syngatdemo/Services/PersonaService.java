@@ -18,6 +18,7 @@ import com.couchbase.lite.SelectResult;
 import org.allex.task.syngatdemo.DataContext.DataContext;
 import org.allex.task.syngatdemo.Entities.Persona;
 import org.allex.task.syngatdemo.Interfaces.IPersonaService;
+import org.allex.task.syngatdemo.Utils.GenericResponse;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -25,12 +26,16 @@ import java.util.Date;
 public class PersonaService implements IPersonaService {
 
     private DataContext _dataContext;
+    private String NOT_FOUND_RESPONSE = "No se ha encontrado el registro.";
 
     public PersonaService(Context context) {
         _dataContext = DataContext.getSharedDataContext(context);
     }
 
+    //Obtiene un listado de personas que no hayan sido eliminados
     public ArrayList<Persona> get(){
+
+        //Selecciona los datos del documento
         Query query = QueryBuilder.select(
                 SelectResult.expression(Meta.id),
                 SelectResult.property("PrimerNombre"),
@@ -40,6 +45,8 @@ public class PersonaService implements IPersonaService {
                 .add(Expression.property("IsPersona").equalTo(Expression.booleanValue(true))));
         ArrayList<Persona> personas = new ArrayList<>();
         try {
+
+            //Busca los datos en la BD y los recorre
             ResultSet result = query.execute();
             for (Result r : result) {
                 personas.add(new Persona(r.getString(0), r.getString("PrimerNombre"),
@@ -51,15 +58,22 @@ public class PersonaService implements IPersonaService {
         return personas;
     }
 
-    public Persona getById(String id){
+    //Obtiene un documento por id
+    public GenericResponse<Boolean, Persona> getById(String id){
         Document document = _dataContext.getDatabase().getDocument(id);
         Persona persona = document != null ? new Persona(document.getId(), document.getString("PrimerNombre"),
                 document.getString("SegundoNombre"), document.getString("PrimerApellido"),
                 document.getString("SegundoApellido"), document.getDate("FechaNacimiento")) : null;
-        return persona;
+
+        //Devuelve true y la persona si la encuentra, de lo contrario, false y null respectivamente
+        GenericResponse<Boolean, Persona> response = new GenericResponse<>(persona != null ? true : false, persona);
+        return response;
     }
 
-    public String create(Persona persona){
+    //Crea una nueva persona
+    public GenericResponse<Boolean, String> create(Persona persona){
+
+        //Agrega los valores al nuevo documento
         MutableDocument mutableDoc = new MutableDocument()
                 .setString("PrimerNombre", persona.getPrimerApellido())
                 .setString("SegundoNombre", persona.getSegundoApellido())
@@ -68,13 +82,98 @@ public class PersonaService implements IPersonaService {
                 .setDate("FechaNacimiento", persona.getFechaNacimiento())
                 .setBoolean("IsDeleted", false)
                 .setBoolean("IsPersona", true);
-        String id = "";
+        GenericResponse<Boolean, String> response = null;
         try {
+            //Guarda los valores en la BD y devuelve true con el id del nuevo documento
             _dataContext.getDatabase().save(mutableDoc);
-            id = mutableDoc.getId();
+            response = new GenericResponse<>(true, mutableDoc.getId());
         } catch (CouchbaseLiteException ex) {
             Log.e("error", ex.getMessage());
+
+            //Si ocurre un error devuelve false y null
+            response = new GenericResponse<>(false, null);
         }
-        return id;
+        return response;
+    }
+
+    //Actualiza un documento mediante el id
+    public GenericResponse<Boolean, String> update(String id, Persona persona){
+
+        //Busca el documento por id
+        MutableDocument mutableDoc = _dataContext.getDatabase().getDocument(id).toMutable();
+
+        //Si no encuentra el documento devuelve false y un mensaje de error.
+        GenericResponse response = null;
+        if(mutableDoc == null)
+            return new GenericResponse<>(false, NOT_FOUND_RESPONSE);
+
+        //Agrega los nuevos valores al documento
+        mutableDoc.setString("PrimerNombre", persona.getPrimerApellido())
+                .setString("SegundoNombre", persona.getSegundoApellido())
+                .setString("PrimerApellido", persona.getPrimerApellido())
+                .setString("SegundoApellido", persona.getSegundoApellido())
+                .setDate("FechaNacimiento", persona.getFechaNacimiento());
+
+        try {
+            //Actualiza los valores en la BD y devuelve true con el id del documento
+            _dataContext.getDatabase().save(mutableDoc);
+            response = new GenericResponse<>(true, mutableDoc.getId());
+        } catch (CouchbaseLiteException ex) {
+            Log.e("error", ex.getMessage());
+            //Si ocurre un error devuelve false y null
+            response = new GenericResponse<>(false, null);
+        }
+        return response;
+    }
+
+    //Elimina un documento mediante el id
+    public GenericResponse<Boolean, String> delete(String id, Persona persona){
+        Document document = _dataContext.getDatabase().getDocument(id);
+
+        GenericResponse response = null;
+        try {
+            if(document != null){
+                //Si encuentra el documento lo elimina, devuelve true y un mensaje
+                _dataContext.getDatabase().delete(document);
+                response = new GenericResponse<>(true, "Se ha eliminado el registro.");
+            }else{
+                //Si no encuentra el documento devuelve false y un mensaje
+                response = new GenericResponse<>(false, NOT_FOUND_RESPONSE);
+            }
+
+        } catch (CouchbaseLiteException ex) {
+            Log.e("error", ex.getMessage());
+            //Si ocurre un error devuelve false y null
+            response = new GenericResponse<>(false, "Un error interno ha ocurrido.");
+        }
+        return response;
+    }
+
+    //Cambia el estado IsDeleted a true a un documento mediante el id
+    //Metodo alternativo para eliminar
+    public GenericResponse<Boolean, String> setDelete(String id){
+
+        //Busca el documento por id
+        MutableDocument mutableDoc = _dataContext.getDatabase().getDocument(id).toMutable();
+
+        //Si no encuentra el documento devuelve false y un mensaje de error.
+
+        if(mutableDoc == null)
+            return new GenericResponse<>(false, NOT_FOUND_RESPONSE);
+
+        GenericResponse response = null;
+        //Agrega los nuevos valores al documento
+        mutableDoc.setBoolean("IsDeleted", true);
+
+        try {
+            //Actualiza los valores en la BD y devuelve true con el id del documento
+            _dataContext.getDatabase().save(mutableDoc);
+            response = new GenericResponse<>(true, "Se ha eliminado el registro.");
+        } catch (CouchbaseLiteException ex) {
+            Log.e("error", ex.getMessage());
+            //Si ocurre un error devuelve false y null
+            response = new GenericResponse<>(false, "Un error interno ha ocurrido.");
+        }
+        return response;
     }
 }
