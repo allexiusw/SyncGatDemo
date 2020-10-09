@@ -48,7 +48,7 @@ public class PersonaService implements IPersonaService {
             //Busca los datos en la BD y los recorre
             ResultSet result = query.execute();
             for (Result r : result) {
-                personas.add(new Persona(r.getString(0), r.getString("PrimerNombre"),
+                personas.add(new Persona(r.getString("id"), r.getString("PrimerNombre"),
                         r.getString("PrimerApellido")));
             }
         } catch (Exception e) {
