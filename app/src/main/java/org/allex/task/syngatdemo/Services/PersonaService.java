@@ -18,10 +18,9 @@ import com.couchbase.lite.SelectResult;
 import org.allex.task.syngatdemo.DataContext.DataContext;
 import org.allex.task.syngatdemo.Entities.Persona;
 import org.allex.task.syngatdemo.Interfaces.IPersonaService;
-import org.allex.task.syngatdemo.Utils.GenericResponse;
+import org.allex.task.syngatdemo.Utils.GenericObjectResponse;
 
 import java.util.ArrayList;
-import java.util.Date;
 
 public class PersonaService implements IPersonaService {
 
@@ -59,19 +58,19 @@ public class PersonaService implements IPersonaService {
     }
 
     //Obtiene un documento por id
-    public GenericResponse<Boolean, Persona> getById(String id){
+    public GenericObjectResponse<Boolean, Persona> getById(String id){
         Document document = _dataContext.getDatabase().getDocument(id);
         Persona persona = document != null ? new Persona(document.getId(), document.getString("PrimerNombre"),
                 document.getString("SegundoNombre"), document.getString("PrimerApellido"),
                 document.getString("SegundoApellido"), document.getDate("FechaNacimiento")) : null;
 
         //Devuelve true y la persona si la encuentra, de lo contrario, false y null respectivamente
-        GenericResponse<Boolean, Persona> response = new GenericResponse<>(persona != null ? true : false, persona);
+        GenericObjectResponse<Boolean, Persona> response = new GenericObjectResponse<>(persona != null ? true : false, persona);
         return response;
     }
 
     //Crea una nueva persona
-    public GenericResponse<Boolean, String> create(Persona persona){
+    public GenericObjectResponse<Boolean, String> create(Persona persona){
 
         //Agrega los valores al nuevo documento
         MutableDocument mutableDoc = new MutableDocument()
@@ -82,30 +81,30 @@ public class PersonaService implements IPersonaService {
                 .setDate("FechaNacimiento", persona.getFechaNacimiento())
                 .setBoolean("IsDeleted", false)
                 .setBoolean("IsPersona", true);
-        GenericResponse<Boolean, String> response = null;
+        GenericObjectResponse<Boolean, String> response = null;
         try {
             //Guarda los valores en la BD y devuelve true con el id del nuevo documento
             _dataContext.getDatabase().save(mutableDoc);
-            response = new GenericResponse<>(true, mutableDoc.getId());
+            response = new GenericObjectResponse<>(true, mutableDoc.getId());
         } catch (CouchbaseLiteException ex) {
             Log.e("error", ex.getMessage());
 
             //Si ocurre un error devuelve false y null
-            response = new GenericResponse<>(false, null);
+            response = new GenericObjectResponse<>(false, null);
         }
         return response;
     }
 
     //Actualiza un documento mediante el id
-    public GenericResponse<Boolean, String> update(String id, Persona persona){
+    public GenericObjectResponse<Boolean, String> update(String id, Persona persona){
 
         //Busca el documento por id
         MutableDocument mutableDoc = _dataContext.getDatabase().getDocument(id).toMutable();
 
         //Si no encuentra el documento devuelve false y un mensaje de error.
-        GenericResponse response = null;
+        GenericObjectResponse response = null;
         if(mutableDoc == null)
-            return new GenericResponse<>(false, NOT_FOUND_RESPONSE);
+            return new GenericObjectResponse<>(false, NOT_FOUND_RESPONSE);
 
         //Agrega los nuevos valores al documento
         mutableDoc.setString("PrimerNombre", persona.getPrimerApellido())
@@ -117,41 +116,41 @@ public class PersonaService implements IPersonaService {
         try {
             //Actualiza los valores en la BD y devuelve true con el id del documento
             _dataContext.getDatabase().save(mutableDoc);
-            response = new GenericResponse<>(true, mutableDoc.getId());
+            response = new GenericObjectResponse<>(true, mutableDoc.getId());
         } catch (CouchbaseLiteException ex) {
             Log.e("error", ex.getMessage());
             //Si ocurre un error devuelve false y null
-            response = new GenericResponse<>(false, null);
+            response = new GenericObjectResponse<>(false, null);
         }
         return response;
     }
 
     //Elimina un documento mediante el id
-    public GenericResponse<Boolean, String> delete(String id, Persona persona){
+    public GenericObjectResponse<Boolean, String> delete(String id, Persona persona){
         Document document = _dataContext.getDatabase().getDocument(id);
 
-        GenericResponse response = null;
+        GenericObjectResponse response = null;
         try {
             if(document != null){
                 //Si encuentra el documento lo elimina, devuelve true y un mensaje
                 _dataContext.getDatabase().delete(document);
-                response = new GenericResponse<>(true, "Se ha eliminado el registro.");
+                response = new GenericObjectResponse<>(true, "Se ha eliminado el registro.");
             }else{
                 //Si no encuentra el documento devuelve false y un mensaje
-                response = new GenericResponse<>(false, NOT_FOUND_RESPONSE);
+                response = new GenericObjectResponse<>(false, NOT_FOUND_RESPONSE);
             }
 
         } catch (CouchbaseLiteException ex) {
             Log.e("error", ex.getMessage());
             //Si ocurre un error devuelve false y null
-            response = new GenericResponse<>(false, "Un error interno ha ocurrido.");
+            response = new GenericObjectResponse<>(false, "Un error interno ha ocurrido.");
         }
         return response;
     }
 
     //Cambia el estado IsDeleted a true a un documento mediante el id
     //Metodo alternativo para eliminar
-    public GenericResponse<Boolean, String> setDelete(String id){
+    public GenericObjectResponse<Boolean, String> setDelete(String id){
 
         //Busca el documento por id
         MutableDocument mutableDoc = _dataContext.getDatabase().getDocument(id).toMutable();
@@ -159,20 +158,20 @@ public class PersonaService implements IPersonaService {
         //Si no encuentra el documento devuelve false y un mensaje de error.
 
         if(mutableDoc == null)
-            return new GenericResponse<>(false, NOT_FOUND_RESPONSE);
+            return new GenericObjectResponse<>(false, NOT_FOUND_RESPONSE);
 
-        GenericResponse response = null;
+        GenericObjectResponse response = null;
         //Agrega los nuevos valores al documento
         mutableDoc.setBoolean("IsDeleted", true);
 
         try {
             //Actualiza los valores en la BD y devuelve true con el id del documento
             _dataContext.getDatabase().save(mutableDoc);
-            response = new GenericResponse<>(true, "Se ha eliminado el registro.");
+            response = new GenericObjectResponse<>(true, "Se ha eliminado el registro.");
         } catch (CouchbaseLiteException ex) {
             Log.e("error", ex.getMessage());
             //Si ocurre un error devuelve false y null
-            response = new GenericResponse<>(false, "Un error interno ha ocurrido.");
+            response = new GenericObjectResponse<>(false, "Un error interno ha ocurrido.");
         }
         return response;
     }

@@ -1,16 +1,16 @@
 package org.allex.task.syngatdemo.Utils;
 
 //Objeto con dos parametros genericos
-public class GenericResponse<Response, Message> {
+public class GenericObjectResponse<Response, Message> {
     Response boolResponse;
     Message messageResponse;
 
-    public GenericResponse(Response boolResponse, Message messageResponse) {
+    public GenericObjectResponse(Response boolResponse, Message messageResponse) {
         this.boolResponse = boolResponse;
         this.messageResponse = messageResponse;
     }
 
-    public GenericResponse() {
+    public GenericObjectResponse() {
     }
 
     public Response getBoolResponse() {
