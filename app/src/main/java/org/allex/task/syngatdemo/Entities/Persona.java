@@ -36,6 +36,12 @@ public class Persona {
         FechaNacimiento = fechaNacimiento;
     }
 
+    public Persona(String id, String primerNombre, String primerApellido) {
+        Id = id;
+        PrimerNombre = primerNombre;
+        PrimerApellido = primerApellido;
+    }
+
     public String getId() {
         return Id;
     }
