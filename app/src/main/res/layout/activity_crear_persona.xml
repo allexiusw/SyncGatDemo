@@ -13,7 +13,7 @@
         android:orientation="vertical"
         android:padding="16dp">
         <TextView
-            style="@style/appTitles"
+            style="@style/titlesStyle.appTitles"
             android:text="Crear persona" />
         <ImageView
             android:src="@drawable/ic_team"
@@ -21,53 +21,68 @@
             />
 
         <TextView
-            style="@style/appParameters"
+            style="@style/titlesStyle.appParameters"
             android:text="@string/primer_nombre"
             />
         <EditText
             android:id="@+id/etPrimerNombre"
-            style="@style/appEditText"
-            android:hint="@string/primer_nombre" />
+            style="@style/appEditTextStyle"
+            android:hint="@string/primer_nombre"
+            android:inputType="textPersonName"/>
 
         <TextView
-            style="@style/appParameters"
+            style="@style/titlesStyle.appParameters"
             android:text="@string/segundo_nombre"
             />
         <EditText
             android:id="@+id/etSegundoNombre"
-            style="@style/appEditText"
-            android:text="@string/segundo_nombre" />
+            style="@style/appEditTextStyle"
+            android:hint="@string/segundo_nombre"
+            android:inputType="textPersonName"/>
 
         <TextView
-            style="@style/appParameters"
+            style="@style/titlesStyle.appParameters"
             android:text="@string/primer_apellido"
             />
         <EditText
             android:id="@+id/etPrimerApellido"
-            style="@style/appEditText"
-            android:text="@string/primer_apellido" />
+            style="@style/appEditTextStyle"
+            android:hint="@string/primer_apellido"
+            android:inputType="textPersonName"/>
 
         <TextView
-            style="@style/appParameters"
+            style="@style/titlesStyle.appParameters"
             android:text="@string/segundo_apellido"
             />
         <EditText
             android:id="@+id/etSegundoApellido"
-            style="@style/appEditText"
-            android:text="@string/segundo_apellido" />
+            style="@style/appEditTextStyle"
+            android:hint="@string/segundo_apellido"
+            android:inputType="textPersonName"/>
 
         <TextView
-            style="@style/appParameters"
+            style="@style/titlesStyle.appParameters"
             android:text="@string/fecha_nacimiento"
             />
 
         <EditText
             android:id="@+id/etFechaNacimiento"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:ems="10"
+            style="@style/appEditTextStyle"
             android:hint="00/00/0000"
             android:inputType="date" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_gravity="center">
+            <Button
+                android:id="@+id/btnGuardar"
+                style="@style/btnStyle.saveBtn"/>
+            <Button
+                android:id="@+id/btnCancelar"
+                style="@style/btnStyle.cancelBtn"/>
+        </LinearLayout>
 
 
     </LinearLayout>

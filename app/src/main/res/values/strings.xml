@@ -5,4 +5,6 @@
     <string name="primer_apellido">Primer apellido</string>
     <string name="segundo_apellido">Segundo apellido</string>
     <string name="fecha_nacimiento">Fecha de nacimiento</string>
+    <string name="guardar">Guardar</string>
+    <string name="cancelar">Cancelar</string>
 </resources>
