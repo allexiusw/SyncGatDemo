@@ -28,6 +28,7 @@ public class PersonaService implements IPersonaService {
     private String NOT_FOUND_RESPONSE = "No se ha encontrado el registro.";
 
     public PersonaService(Context context) {
+        //TODO: La replicación de datos solo ocurre cuando se inicializa el servicio
         _dataContext = DataContext.getSharedDataContext(context);
     }
 
@@ -74,8 +75,8 @@ public class PersonaService implements IPersonaService {
 
         //Agrega los valores al nuevo documento
         MutableDocument mutableDoc = new MutableDocument()
-                .setString("PrimerNombre", persona.getPrimerApellido())
-                .setString("SegundoNombre", persona.getSegundoApellido())
+                .setString("PrimerNombre", persona.getPrimerNombre())
+                .setString("SegundoNombre", persona.getSegundoNombre())
                 .setString("PrimerApellido", persona.getPrimerApellido())
                 .setString("SegundoApellido", persona.getSegundoApellido())
                 .setDate("FechaNacimiento", persona.getFechaNacimiento())
