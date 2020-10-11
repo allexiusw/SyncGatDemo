@@ -35,6 +35,18 @@ public class DataContext {
             Log.e("error", ex.getMessage());
         }
 
+        startReplication(database);
+    }
+
+
+    //Metodo que nos permite obtener una instacia de nuestro contexto de datos
+    public static DataContext getSharedDataContext(Context context){
+        instance = instance == null ? new DataContext(context) : instance;
+
+        return instance;
+    }
+
+    public void startReplication(Database database){
         //Crea la URI del recurso a manejar
         Endpoint endpoint = null;
         try{
@@ -52,20 +64,12 @@ public class DataContext {
         Replicator replicator = new Replicator(replicatorConfiguration);
 
         replicator.addChangeListener(change -> {
-           if(change.getStatus().getError() != null){
-               Log.e("error", "Error code: "+change.getStatus().getError().getCode());
-           }
+            if(change.getStatus().getError() != null){
+                Log.e("error", "Error code: "+change.getStatus().getError().getCode());
+            }
         });
 
         //Inicia la replicación
         replicator.start();
-    }
-
-
-    //Metodo que nos permite obtener una instacia de nuestro contexto de datos
-    public static DataContext getSharedDataContext(Context context){
-        instance = instance == null ? new DataContext(context) : instance;
-
-        return instance;
     }
 }
