@@ -86,6 +86,7 @@ public class PersonaService implements IPersonaService {
             //Guarda los valores en la BD y devuelve true con el id del nuevo documento
             _dataContext.getDatabase().save(mutableDoc);
             response = new GenericObjectResponse<>(true, mutableDoc.getId());
+            _dataContext.startReplication(_dataContext.getDatabase());
         } catch (CouchbaseLiteException ex) {
             Log.e("error", ex.getMessage());
 
@@ -117,6 +118,7 @@ public class PersonaService implements IPersonaService {
             //Actualiza los valores en la BD y devuelve true con el id del documento
             _dataContext.getDatabase().save(mutableDoc);
             response = new GenericObjectResponse<>(true, mutableDoc.getId());
+            _dataContext.startReplication(_dataContext.getDatabase());
         } catch (CouchbaseLiteException ex) {
             Log.e("error", ex.getMessage());
             //Si ocurre un error devuelve false y null
@@ -135,6 +137,7 @@ public class PersonaService implements IPersonaService {
                 //Si encuentra el documento lo elimina, devuelve true y un mensaje
                 _dataContext.getDatabase().delete(document);
                 response = new GenericObjectResponse<>(true, "Se ha eliminado el registro.");
+                _dataContext.startReplication(_dataContext.getDatabase());
             }else{
                 //Si no encuentra el documento devuelve false y un mensaje
                 response = new GenericObjectResponse<>(false, NOT_FOUND_RESPONSE);
@@ -168,6 +171,7 @@ public class PersonaService implements IPersonaService {
             //Actualiza los valores en la BD y devuelve true con el id del documento
             _dataContext.getDatabase().save(mutableDoc);
             response = new GenericObjectResponse<>(true, "Se ha eliminado el registro.");
+            _dataContext.startReplication(_dataContext.getDatabase());
         } catch (CouchbaseLiteException ex) {
             Log.e("error", ex.getMessage());
             //Si ocurre un error devuelve false y null
