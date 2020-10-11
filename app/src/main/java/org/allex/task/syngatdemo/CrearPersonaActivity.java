@@ -65,8 +65,9 @@ public class CrearPersonaActivity extends AppCompatActivity implements View.OnCl
 
                         GenericObjectResponse<Boolean, String> response = personaService.create(persona);
                         if(response.getBoolResponse()){
-                            //TODO: Agrega intent a información del registro
-                            Toast.makeText(this, response.getMessageResponse(), Toast.LENGTH_SHORT).show();
+                            Intent intent = new Intent(CrearPersonaActivity.this, MostrarPersonaActivity.class);
+                            intent.putExtra("id", response.getMessageResponse());
+                            startActivity(intent);
                         }else{
                             Toast.makeText(this, "No se ha podido registrar la persona", Toast.LENGTH_SHORT).show();
                         }
