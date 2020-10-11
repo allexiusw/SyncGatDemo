@@ -2,7 +2,6 @@ package org.allex.task.syngatdemo.Services;
 
 import android.content.Context;
 import android.util.Log;
-
 import com.couchbase.lite.CouchbaseLiteException;
 import com.couchbase.lite.DataSource;
 import com.couchbase.lite.Document;
@@ -14,12 +13,10 @@ import com.couchbase.lite.QueryBuilder;
 import com.couchbase.lite.Result;
 import com.couchbase.lite.ResultSet;
 import com.couchbase.lite.SelectResult;
-
 import org.allex.task.syngatdemo.DataContext.DataContext;
 import org.allex.task.syngatdemo.Entities.Persona;
 import org.allex.task.syngatdemo.Interfaces.IPersonaService;
 import org.allex.task.syngatdemo.Utils.GenericObjectResponse;
-
 import java.util.ArrayList;
 
 public class PersonaService implements IPersonaService {
@@ -28,13 +25,11 @@ public class PersonaService implements IPersonaService {
     private String NOT_FOUND_RESPONSE = "No se ha encontrado el registro.";
 
     public PersonaService(Context context) {
-        //TODO: La replicación de datos solo ocurre cuando se inicializa el servicio
         _dataContext = DataContext.getSharedDataContext(context);
     }
 
     //Obtiene un listado de personas que no hayan sido eliminados
     public ArrayList<Persona> get(){
-
         //Selecciona los datos del documento
         Query query = QueryBuilder.select(
                 SelectResult.expression(Meta.id),
