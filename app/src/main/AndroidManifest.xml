@@ -13,7 +13,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".activity_splash"></activity>
+        <activity android:name=".Activity_Home"></activity>
+        <activity android:name=".activity_splash" />
         <activity android:name=".MostrarPersonaActivity" />
         <activity android:name=".CrearPersonaActivity" />
         <activity android:name=".MainActivity">
