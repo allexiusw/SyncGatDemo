@@ -18,7 +18,7 @@ public class activity_splash extends AppCompatActivity {
         setContentView(R.layout.activity_splash);
 
         Animation animation1 = AnimationUtils.loadAnimation(this, R.anim.desplazamiento_arriba);
-        ImageView imageView = findViewById(R.id.imagenSplash);
+        ImageView imageView = findViewById(R.id.imagen);
 
 
         new Handler().postDelayed(new Runnable() {
