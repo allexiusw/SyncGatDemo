@@ -4,17 +4,17 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#FFFFFF"
     tools:context=".activity_splash">
 
     <ImageView
         android:id="@+id/imagenSplash"
-        android:layout_width="421dp"
-        android:layout_height="735dp"
+        android:layout_width="390dp"
+        android:layout_height="734dp"
+        android:backgroundTint="#FFFFFF"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0"
-        app:srcCompat="@drawable/imagensplas" />
+        app:srcCompat="@drawable/nuevo" />
 </android.support.constraint.ConstraintLayout>
