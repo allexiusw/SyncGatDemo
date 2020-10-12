@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import org.allex.task.syngatdemo.R;
+import org.allex.task.syngatdemo.Services.PersonaService;
 
 
 import java.util.ArrayList;
@@ -26,6 +27,13 @@ public class PersonaAdapter extends RecyclerView.Adapter<PersonaAdapter.ViewHold
         this.listaPersonas = listaPersonas;
     }
 
+    public PersonaAdapter() {
+
+    }
+
+    public void setData(ArrayList<String> listaPersonas, PersonaService personaService) {
+
+    }
 
 
     public class ViewHolder extends RecyclerView.ViewHolder {
