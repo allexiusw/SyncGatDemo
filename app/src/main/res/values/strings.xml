@@ -12,5 +12,5 @@
     <string name="nombreItem">Nombre y Apellido </string>
 
     <!--Name App Bar-->
-    <string name="titulo">Listado de Personas</string>
+    <string name="title_list">Listado de Personas</string>
 </resources>

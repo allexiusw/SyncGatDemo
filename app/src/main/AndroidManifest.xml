@@ -15,7 +15,9 @@
         android:theme="@style/AppTheme">
         <activity android:name=".MostrarPersonaActivity" />
         <activity android:name=".CrearPersonaActivity" />
-        <activity android:name=".MainActivity">
+        <activity android:name=".MainActivity"></activity>
+        <activity android:name=".ListaPersonasActivity"
+            android:label="@string/title_list">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
