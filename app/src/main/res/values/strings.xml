@@ -7,4 +7,7 @@
     <string name="fecha_nacimiento">Fecha de nacimiento</string>
     <string name="guardar">Guardar</string>
     <string name="cancelar">Cancelar</string>
+
+    <!--AppBar Name-->
+    <string name="lista">Lista de Personas</string>
 </resources>
