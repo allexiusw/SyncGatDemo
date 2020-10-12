@@ -124,7 +124,7 @@ public class PersonaService implements IPersonaService {
     }
 
     //Elimina un documento mediante el id
-    public GenericObjectResponse<Boolean, String> delete(String id, Persona persona){
+    public GenericObjectResponse<Boolean, String> delete(String id){
         Document document = _dataContext.getDatabase().getDocument(id);
 
         GenericObjectResponse response = null;
