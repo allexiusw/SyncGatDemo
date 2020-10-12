@@ -24,12 +24,12 @@ public class activity_splash extends AppCompatActivity {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                Intent intent = new Intent(activity_splash .this, Activity_Home.class);
+                Intent intent = new Intent(activity_splash.this, Activity_Home.class);
                 startActivity(intent);
                 finish();
             }
         }, 2000);
     }
 
-    }
+
 }
