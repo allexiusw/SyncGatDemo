@@ -8,6 +8,9 @@
     <string name="guardar">Guardar</string>
     <string name="cancelar">Cancelar</string>
 
-    <!--AppBar Name-->
-    <string name="lista">Lista de Personas</string>
+    <!--Texto de cada Item -->
+    <string name="nombreItem">Nombre y Apellido </string>
+
+    <!--Name App Bar-->
+    <string name="titulo">Listado de Personas</string>
 </resources>
