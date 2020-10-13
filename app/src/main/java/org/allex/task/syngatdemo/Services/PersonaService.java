@@ -32,6 +32,11 @@ public class PersonaService implements IPersonaService {
 
     }
 
+    public PersonaService(String primerNombre, String primerApellido) {
+    }
+
+
+    //*******************************************************************************
     //Obtiene un listado de personas que no hayan sido eliminados
     public ArrayList<Persona> get(){
         //Selecciona los datos del documento

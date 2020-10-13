@@ -6,48 +6,37 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
 import org.allex.task.syngatdemo.Adapters.PersonaAdapter;
+import org.allex.task.syngatdemo.Entities.Persona;
+import org.allex.task.syngatdemo.Interfaces.IPersonaService;
 import org.allex.task.syngatdemo.Services.PersonaService;
 
 import java.util.ArrayList;
 
 public class ListaPersonasActivity extends AppCompatActivity {
 
-    ArrayList<String> listaPersonas;
-    RecyclerView recyclerView;
-    PersonaAdapter personaAdapter;
-    PersonaService personaService;
+    private ArrayList<Persona>listaPersonas;
+    private RecyclerView recyclerView;
+    private PersonaAdapter personaAdapter;
+    private IPersonaService iPersonaService;
+    private LinearLayoutManager linearLayoutManager;
 
+    //***********************************************
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lista_personas);
 
-        personaService= new PersonaService();
-
-        recyclerView=(RecyclerView)findViewById(R.id.rvListaPersonas);
-
-        recyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
+        iPersonaService = new PersonaService(this);
+        listaPersonas= iPersonaService.get();
         personaAdapter = new PersonaAdapter();
-        personaAdapter.setData(listaPersonas, personaService);
 
+        recyclerView=findViewById(R.id.rvListaPersonas);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        listaPersonas=new ArrayList<String>();
+        personaAdapter.setData(listaPersonas, iPersonaService);
 
-        for (int i=0; i<50;  i++){
-            listaPersonas.add("Persona"+ i+ " Bienvenido");
-        }
-
-        PersonaAdapter adapter = new PersonaAdapter(listaPersonas);
-        recyclerView.setAdapter(adapter);
-
-
-
-
-
-
-
-
+        recyclerView.setAdapter(personaAdapter);
 
 
 
