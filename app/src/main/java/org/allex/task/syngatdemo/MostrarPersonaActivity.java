@@ -1,9 +1,10 @@
 package org.allex.task.syngatdemo;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import org.allex.task.syngatdemo.Entities.Persona;
 import org.allex.task.syngatdemo.Interfaces.IPersonaService;
