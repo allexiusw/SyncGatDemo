@@ -93,6 +93,7 @@ public class ActualizarActivity extends AppCompatActivity implements View.OnClic
 
             case R.id.btnCancelar:{
                 Util.limpiarEditText(editTexts);
+                break;
             }
         }
     }

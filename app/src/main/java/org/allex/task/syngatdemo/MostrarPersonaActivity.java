@@ -66,6 +66,7 @@ public class MostrarPersonaActivity extends AppCompatActivity implements View.On
                 intent.putExtra("id", id);
                 startActivity(intent);
                 finish();
+                break;
             }
             case R.id.btnEliminar:{
                 GenericObjectResponse<Boolean, String> response = personaService.delete(id);
@@ -76,6 +77,7 @@ public class MostrarPersonaActivity extends AppCompatActivity implements View.On
                     finish();
                 }else
                     Toast.makeText(this, response.getMessageResponse(), Toast.LENGTH_SHORT).show();
+                break;
             }
         }
     }

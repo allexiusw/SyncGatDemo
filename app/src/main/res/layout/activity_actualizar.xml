@@ -70,5 +70,20 @@
             style="@style/appEditTextStyle"
             android:hint="00/00/0000"
             android:inputType="date" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_gravity="center">
+            <Button
+                android:id="@+id/btnGuardar"
+                style="@style/btnStyle.saveBtn"/>
+            <Button
+                android:id="@+id/btnCancelar"
+                style="@style/btnStyle.cancelBtn"/>
+        </LinearLayout>
+
+
     </LinearLayout>
 </ScrollView>
