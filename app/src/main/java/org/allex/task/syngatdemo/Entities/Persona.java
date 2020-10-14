@@ -52,6 +52,7 @@ public class Persona {
         PrimerApellido = primerApellido;
     }
 
+
     public String getId() {
         return Id;
     }
@@ -108,11 +109,14 @@ public class Persona {
         IsDeleted = deleted;
     }
 
-    public boolean isPersona() {
+    public boolean isPersona(boolean b) {
         return IsPersona;
     }
 
     public void setPersona(boolean persona) {
         IsPersona = persona;
     }
+
+
+
 }
