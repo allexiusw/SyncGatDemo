@@ -113,8 +113,8 @@ public class PersonaService implements IPersonaService {
             return new GenericObjectResponse<>(false, NOT_FOUND_RESPONSE);
 
         //Agrega los nuevos valores al documento
-        mutableDoc.setString("PrimerNombre", persona.getPrimerApellido())
-                .setString("SegundoNombre", persona.getSegundoApellido())
+        mutableDoc.setString("PrimerNombre", persona.getPrimerNombre())
+                .setString("SegundoNombre", persona.getSegundoNombre())
                 .setString("PrimerApellido", persona.getPrimerApellido())
                 .setString("SegundoApellido", persona.getSegundoApellido())
                 .setDate("FechaNacimiento", persona.getFechaNacimiento());

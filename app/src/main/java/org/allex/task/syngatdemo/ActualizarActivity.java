@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import org.allex.task.syngatdemo.Entities.Persona;
@@ -25,6 +26,7 @@ public class ActualizarActivity extends AppCompatActivity implements View.OnClic
     private IPersonaService personaService;
     private EditText[] editTexts;
     private String id;
+    private TextView tvNombrePersona;
 
 
     @Override
@@ -36,6 +38,7 @@ public class ActualizarActivity extends AppCompatActivity implements View.OnClic
         id = getIntent().getExtras().getString("id");
         GenericObjectResponse<Boolean, Persona> response = personaService.getById(id);
 
+        tvNombrePersona = findViewById(R.id.tvNombrePersona);
         etPrimerNombre = findViewById(R.id.etPrimerNombre);
         etSegundoNombre = findViewById(R.id.etSegundoNombre);
         etPrimerApellido = findViewById(R.id.etPrimerApellido);
@@ -76,9 +79,11 @@ public class ActualizarActivity extends AppCompatActivity implements View.OnClic
 
                         GenericObjectResponse<Boolean, String> response = personaService.update(id, persona);
                         if(response.getBoolResponse()){
+                            Toast.makeText(this, "Se ha actualizado el registro", Toast.LENGTH_SHORT).show();
                             Intent intent = new Intent(ActualizarActivity.this, MostrarPersonaActivity.class);
                             intent.putExtra("id", response.getMessageResponse());
                             startActivity(intent);
+                            finish();
                         }else{
                             Toast.makeText(this, response.getMessageResponse(), Toast.LENGTH_SHORT).show();
                         }
@@ -101,6 +106,7 @@ public class ActualizarActivity extends AppCompatActivity implements View.OnClic
     private void setData(Persona persona){
         SimpleDateFormat formatFecha = new SimpleDateFormat("dd/MM/yyyy");
         String fechaFormato = formatFecha.format(persona.getFechaNacimiento());
+        tvNombrePersona.setText(persona.getPrimerNombre().concat(" ").concat(persona.getPrimerApellido()));
         etPrimerNombre.setText(persona.getPrimerNombre());
         etSegundoNombre.setText(persona.getSegundoNombre().isEmpty() ? "" : persona.getSegundoNombre());
         etPrimerApellido.setText(persona.getPrimerApellido());

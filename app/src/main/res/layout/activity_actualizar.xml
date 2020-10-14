@@ -13,8 +13,9 @@
         android:orientation="vertical"
         android:padding="16dp">
         <TextView
+            android:id="@+id/tvNombrePersona"
             style="@style/titlesStyle.appTitles"
-            android:text="Crear persona" />
+            android:text="Actualizar persona" />
         <ImageView
             android:src="@drawable/ic_team"
             style="@style/activityImage"
