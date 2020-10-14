@@ -10,5 +10,5 @@ public interface IPersonaService {
     GenericObjectResponse<Boolean, Persona> getById(String id);
     GenericObjectResponse<Boolean, String> create(Persona persona);
     GenericObjectResponse<Boolean, String> update(String id, Persona persona);
-    GenericObjectResponse<Boolean, String> delete(String id, Persona persona);
+    GenericObjectResponse<Boolean, String> delete(String id);
 }

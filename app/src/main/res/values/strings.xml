@@ -20,6 +20,9 @@
     <string name="Consulatr">Consulatr</string>
     <string name="Modificar">Editar</string>
     <string name="Info"> Información </string>
+  <!--Texto de cada Item -->
+    <string name="nombreItem">Nombre y Apellido </string>
 
-
+    <!--Name App Bar-->
+    <string name="title_list">Listado de Personas</string>
 </resources>

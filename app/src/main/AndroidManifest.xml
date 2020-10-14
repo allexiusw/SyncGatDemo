@@ -17,6 +17,8 @@
         <activity android:name=".MainActivity" />
         <activity android:name=".MostrarPersonaActivity" />
         <activity android:name=".CrearPersonaActivity" />
+        <activity android:name=".ListaPersonasActivity"
+            android:label="@string/title_list" />
         <activity android:name=".Activity_Home" />
         <activity android:name=".activity_splash">
             <intent-filter>
