@@ -1,9 +1,12 @@
 package org.allex.task.syngatdemo;
 
+import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
+import android.view.View;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import org.allex.task.syngatdemo.Adapters.PersonaAdapter;
 import org.allex.task.syngatdemo.Entities.Persona;
@@ -18,7 +21,6 @@ public class ListaPersonasActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
     private PersonaAdapter personaAdapter;
     private IPersonaService iPersonaService;
-    private LinearLayoutManager linearLayoutManager;
 
     //***********************************************
 
@@ -34,11 +36,20 @@ public class ListaPersonasActivity extends AppCompatActivity {
         recyclerView=findViewById(R.id.rvListaPersonas);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        personaAdapter.setData(listaPersonas, iPersonaService);
+        personaAdapter.setData(listaPersonas);
 
         recyclerView.setAdapter(personaAdapter);
 
-
+        personaAdapter.setOnclicListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String idPersona = listaPersonas.get(recyclerView.getChildAdapterPosition(view)).getId();
+                Intent intent = new Intent(ListaPersonasActivity.this, MostrarPersonaActivity.class);
+                intent.putExtra("id", idPersona);
+                startActivity(intent);
+                finish();
+            }
+        });
 
     }
 }

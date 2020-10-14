@@ -2,12 +2,12 @@ package org.allex.task.syngatdemo;
 
 import android.content.Intent;
 import android.os.Handler;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 
+import androidx.appcompat.app.AppCompatActivity;
 
 
 public class activity_splash extends AppCompatActivity {
