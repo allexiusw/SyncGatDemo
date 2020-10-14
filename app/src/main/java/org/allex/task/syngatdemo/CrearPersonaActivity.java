@@ -57,7 +57,7 @@ public class CrearPersonaActivity extends AppCompatActivity implements View.OnCl
                 primerApellido = etPrimerApellido.getText().toString();
                 segundoApellido = etSegundoApellido.getText().toString();
                 fechaNacimiento = etFechaNacimiento.getText().toString();
-                boolean isValidData = validarCampos( new String[]{primerNombre, primerApellido});
+                boolean isValidData = Util.validarCampos(this , new String[]{primerNombre, primerApellido});
                 if(isValidData){
                     try {
                         Date nacimiento = new SimpleDateFormat("dd-MM-yyyy")
@@ -85,15 +85,5 @@ public class CrearPersonaActivity extends AppCompatActivity implements View.OnCl
                 Util.limpiarEditText(editTexts);
             }
         }
-    }
-
-    private boolean validarCampos(String[] nombresRequeridos){
-        for (String nombre : nombresRequeridos){
-            if (nombre.isEmpty() || nombre.trim().length() <1){
-                Toast.makeText(this, "El primer nombre y primer apellido son requeridos", Toast.LENGTH_SHORT).show();
-                return false;
-            }
-        }
-        return true;
     }
 }

@@ -127,7 +127,7 @@ public class PersonaService implements IPersonaService {
         } catch (CouchbaseLiteException ex) {
             Log.e("error", ex.getMessage());
             //Si ocurre un error devuelve false y null
-            response = new GenericObjectResponse<>(false, null);
+            response = new GenericObjectResponse<>(false, "Ha ocurrido un error al intentar actualizar el registro.");
         }
         return response;
     }
