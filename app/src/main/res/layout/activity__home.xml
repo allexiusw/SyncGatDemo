@@ -43,71 +43,36 @@
             android:textSize="18sp" />
 
         <LinearLayout
-            android:layout_width="496dp"
-            android:layout_height="97dp"
-            android:layout_marginTop="24dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="48dp"
             android:gravity="center">
 
             <Button
                 android:id="@+id/btnCrear"
                 android:layout_width="60dp"
                 android:layout_height="60dp"
-                android:layout_marginRight="30dp"
                 android:background="@drawable/ic_save"
                 android:textColor="#FFFFFF"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:layout_marginRight="24dp"/>
 
             <Button
-                android:id="@+id/btnModificar"
+                android:id="@+id/btnListar"
                 android:layout_width="60dp"
                 android:layout_height="60dp"
-                android:layout_marginRight="30dp"
                 android:background="@drawable/ic_view"
                 android:textColor="#FFFFFF"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:layout_marginRight="24dp"/>
 
             <Button
                 android:id="@+id/btnInformacion"
                 android:layout_width="60dp"
                 android:layout_height="60dp"
-                android:layout_marginRight="30dp"
                 android:background="@drawable/ic_team"
                 android:textColor="#FFFFFF"
-                android:textStyle="bold" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="496dp"
-            android:layout_height="97dp"
-            android:layout_marginTop="2dp"
-            android:gravity="center">
-            <TextView
-                android:id="@+id/tvcrear"
-                android:layout_width="60dp"
-                android:layout_height="60dp"
-                android:layout_marginRight="30dp"
-                android:text="@string/Crear"
-                android:textAlignment="center"
-                android:textSize="14dp" />
-
-            <TextView
-                android:id="@+id/tvver"
-                android:layout_width="60dp"
-                android:layout_height="60dp"
-                android:layout_marginRight="30dp"
-                android:text="@string/Consulatr"
-                android:textAlignment="center"
-                android:textSize="14dp" />
-
-            <TextView
-                android:id="@+id/tvInformacion"
-                android:layout_width="100dp"
-                android:layout_height="55dp"
-                android:layout_marginRight="30dp"
-                android:text="@string/Info"
-                android:textAlignment="center"
-                android:textSize="14dp" />
+                android:textStyle="bold"/>
         </LinearLayout>
     </LinearLayout>
 </ScrollView>
