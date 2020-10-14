@@ -1,5 +1,6 @@
 package org.allex.task.syngatdemo;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -61,12 +62,20 @@ public class MostrarPersonaActivity extends AppCompatActivity implements View.On
     public void onClick(View view) {
         switch (view.getId()){
             case R.id.btnActualizar:{
-                Toast.makeText(this, "Actualizar" + id, Toast.LENGTH_SHORT).show();
-                break;
+                Intent intent = new Intent(MostrarPersonaActivity.this, ActualizarActivity.class);
+                intent.putExtra("id", id);
+                startActivity(intent);
+                finish();
             }
-            case  R.id.btnEliminar:{
-                Toast.makeText(this,"Eliminar " + id, Toast.LENGTH_SHORT).show();
-                break;
+            case R.id.btnEliminar:{
+                GenericObjectResponse<Boolean, String> response = personaService.delete(id);
+                if(response.getBoolResponse()){
+                    Toast.makeText(this, response.getMessageResponse(), Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(MostrarPersonaActivity.this, Activity_Home.class);
+                    startActivity(intent);
+                    finish();
+                }else
+                    Toast.makeText(this, response.getMessageResponse(), Toast.LENGTH_SHORT).show();
             }
         }
     }
