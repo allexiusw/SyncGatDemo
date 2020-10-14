@@ -8,7 +8,19 @@
     <string name="guardar">Guardar</string>
     <string name="cancelar">Cancelar</string>
 
-    <!--Texto de cada Item -->
+    <!--Activity HOME -->
+    <string name="bienvenida"> ¡Bienvenido a Registro Amigos!</string>
+    <string name="Explicacion">
+        Esta es una aplicacion para  registar datos peronales de peronas.
+        Aqui podras, crear, modificar,buscar y eliminar el reistro que desea.
+        Su finalidad  es servir de fuente de información necesaria para los datos de tus amigos.
+    </string>
+    <string name="Crear">Crear</string>
+    <string name="Eliminar">Eliminar</string>
+    <string name="Consulatr">Consulatr</string>
+    <string name="Modificar">Editar</string>
+    <string name="Info"> Información </string>
+  <!--Texto de cada Item -->
     <string name="nombreItem">Nombre y Apellido </string>
 
     <!--Name App Bar-->

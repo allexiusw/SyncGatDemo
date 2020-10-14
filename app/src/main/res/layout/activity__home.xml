@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Activity_Home"
+    android:nestedScrollingEnabled="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:padding="20dp">
+
+        <ImageView
+            android:id="@+id/imgregistro"
+            android:layout_width="139dp"
+            android:layout_height="185dp"
+            android:layout_marginTop="16dp"
+            app:srcCompat="@drawable/registration" />
+
+        <TextView
+            android:id="@+id/tvSBienvenida"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="28dp"
+            android:layout_marginBottom="20dp"
+            android:text="@string/bienvenida"
+            android:textAlignment="center"
+            android:textColor="@color/colorPrimary"
+            android:textSize="24sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tvExplicacion"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/Explicacion"
+            android:textAlignment="center"
+            android:textSize="18sp" />
+
+        <LinearLayout
+            android:layout_width="496dp"
+            android:layout_height="97dp"
+            android:layout_marginTop="24dp"
+            android:gravity="center">
+
+            <Button
+                android:id="@+id/btnCrear"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_marginRight="30dp"
+                android:background="@drawable/ic_save"
+                android:textColor="#FFFFFF"
+                android:textStyle="bold" />
+
+            <Button
+                android:id="@+id/btnModificar"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_marginRight="30dp"
+                android:background="@drawable/ic_view"
+                android:textColor="#FFFFFF"
+                android:textStyle="bold" />
+
+            <Button
+                android:id="@+id/btnInformacion"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_marginRight="30dp"
+                android:background="@drawable/ic_team"
+                android:textColor="#FFFFFF"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="496dp"
+            android:layout_height="97dp"
+            android:layout_marginTop="2dp"
+            android:gravity="center">
+            <TextView
+                android:id="@+id/tvcrear"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_marginRight="30dp"
+                android:text="@string/Crear"
+                android:textAlignment="center"
+                android:textSize="14dp" />
+
+            <TextView
+                android:id="@+id/tvver"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_marginRight="30dp"
+                android:text="@string/Consulatr"
+                android:textAlignment="center"
+                android:textSize="14dp" />
+
+            <TextView
+                android:id="@+id/tvInformacion"
+                android:layout_width="100dp"
+                android:layout_height="55dp"
+                android:layout_marginRight="30dp"
+                android:text="@string/Info"
+                android:textAlignment="center"
+                android:textSize="14dp" />
+        </LinearLayout>
+    </LinearLayout>
+</ScrollView>
