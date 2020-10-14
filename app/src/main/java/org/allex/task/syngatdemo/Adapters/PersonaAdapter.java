@@ -20,16 +20,13 @@ import java.util.ArrayList;
 public class PersonaAdapter extends RecyclerView.Adapter<PersonaAdapter.ViewHolder> implements View.OnClickListener {
 
     private ArrayList<Persona> listaPersonas;
-    private IPersonaService iPersonaService;
     private Context context;
     private View.OnClickListener listener;
 
 
-    public void setData(ArrayList<Persona> lista, IPersonaService service) {
+    public void setData(ArrayList<Persona> lista) {
         listaPersonas = lista;
-        iPersonaService= service;
     }
-
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         TextView tvNmbre;
@@ -37,12 +34,7 @@ public class PersonaAdapter extends RecyclerView.Adapter<PersonaAdapter.ViewHold
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
 
-            tvNmbre=itemView.findViewById(R.id.tvNombre_Lista);
-
-        }
-
-        public void verPersonas(Persona personas) {
-            tvNmbre.setText((CharSequence) personas);
+            tvNmbre = itemView.findViewById(R.id.tvNombre_Lista);
         }
     }
 
@@ -62,33 +54,23 @@ public class PersonaAdapter extends RecyclerView.Adapter<PersonaAdapter.ViewHold
     public void onBindViewHolder(@NonNull ViewHolder viewHolder, int position) {
         Persona persona = listaPersonas.get(position);
         setPersonaData(persona,viewHolder);
-        //viewHolder.verPersonas(listaPersonas.get(position));
     }
-
-    private void setPersonaData(Persona persona, ViewHolder viewHolder) {
-        ArrayList<Persona> nombrePersona = iPersonaService.get();
-        viewHolder.tvNmbre.setText(persona.getPrimerNombre() + " " + persona.getPrimerApellido());
-
-    }
-
 
     @Override
     public int getItemCount() {
         return listaPersonas.size();
     }
 
+    public void setOnclicListener(View.OnClickListener listener){this.listener = listener;}
+
     @Override
-    public void onClick(View itemView) {
-        int Nombre= getItemViewType(R.id.tvNombre_Lista);
-        Intent intent = new Intent(itemView.getContext(), MostrarPersonaActivity.class);
-        intent.putExtra("nombre", Nombre);
-        itemView.getContext().startActivity(intent);
-
-       /* if(listener!= null){
+    public void onClick(View view) {
+        if(listener != null)
             listener.onClick(view);
+    }
 
-        }*/
-
+    private void setPersonaData(Persona persona, ViewHolder viewHolder) {
+        viewHolder.tvNmbre.setText(persona.getPrimerNombre() + " " + persona.getPrimerApellido());
     }
 
 

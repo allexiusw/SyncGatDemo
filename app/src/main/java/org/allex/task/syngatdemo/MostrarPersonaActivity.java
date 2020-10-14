@@ -44,7 +44,7 @@ public class MostrarPersonaActivity extends AppCompatActivity {
         tvNombrePersona.setText(persona.getPrimerNombre().concat(" ").concat(persona.getPrimerApellido()));
         tvPrimerNombre.setText(persona.getPrimerNombre());
         tvSegundoNombre.setText(persona.getSegundoNombre().isEmpty() ? "No registrado" : persona.getSegundoNombre());
-        tvPrimerApellido.setText(persona.getPrimerNombre());
+        tvPrimerApellido.setText(persona.getPrimerApellido());
         tvSegundoApellido.setText(persona.getSegundoApellido().isEmpty() ? "No registrado" : persona.getSegundoApellido());
         tvFechaNacimiento.setText(fechaFormato);
     }
