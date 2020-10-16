@@ -1,8 +1,70 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="android:Theme.Material.Light.DarkActionBar">
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->
+    </style>
+
+    <style name="titlesStyle">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/colorPrimaryDark</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="titlesStyle.appTitles">
+        <item name="android:textSize">28sp</item>
+        <item name="android:layout_marginBottom">20dp</item>
+        <item name="android:layout_gravity">center</item>
+    </style>
+    
+    <style name="descriptionStyle">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@android:color/black</item>
+    </style>
+
+    <style name="descriptionStyle.appDescription">
+        <item name="android:textSize">20sp</item>
+        <item name="android:layout_marginBottom">20dp</item>
+    </style>
+
+    <style name="titlesStyle.appParameters">
+        <item name="android:textSize">20sp</item>
+        <item name="android:layout_marginBottom">12dp</item>
+    </style>
+
+    <style name="appEditTextStyle">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:ems">10</item>
+        <item name="android:layout_marginBottom">24dp</item>
+    </style>
+    
+   <style name="activityImage">
+       <item name="android:layout_width">156dp</item>
+       <item name="android:layout_height">156dp</item>
+       <item name="android:layout_gravity">center</item>
+       <item name="android:layout_marginBottom">20dp</item>
+   </style>
+
+    <style name="btnStyle">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:padding">16dp</item>
+    </style>
+
+    <style name="btnStyle.saveBtn">
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:background">@color/saveBtnBg</item>
+        <item name="android:layout_marginRight">24dp</item>
+        <item name="android:text">@string/guardar</item>
+    </style>
+
+    <style name="btnStyle.cancelBtn">
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:background">@color/cancelBtnBg</item>
+        <item name="android:text">@string/cancelar</item>
     </style>
 
 </resources>
