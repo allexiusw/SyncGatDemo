@@ -69,6 +69,7 @@ public class CrearPersonaActivity extends AppCompatActivity implements View.OnCl
                             Intent intent = new Intent(CrearPersonaActivity.this, MostrarPersonaActivity.class);
                             intent.putExtra("id", response.getMessageResponse());
                             startActivity(intent);
+                            finish();
                         }else{
                             Toast.makeText(this, "No se ha podido registrar la persona", Toast.LENGTH_SHORT).show();
                         }
