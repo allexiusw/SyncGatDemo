@@ -13,6 +13,7 @@ import org.allex.task.syngatdemo.Entities.Persona;
 import org.allex.task.syngatdemo.Interfaces.IPersonaService;
 import org.allex.task.syngatdemo.Services.PersonaService;
 import org.allex.task.syngatdemo.Utils.GenericObjectResponse;
+import org.allex.task.syngatdemo.Utils.Util;
 
 import java.text.SimpleDateFormat;
 
@@ -69,9 +70,11 @@ public class MostrarPersonaActivity extends AppCompatActivity implements View.On
                 break;
             }
             case R.id.btnEliminar:{
-                GenericObjectResponse<Boolean, String> response = personaService.delete(id);
+                GenericObjectResponse<Boolean, String> response = personaService.setDelete(id);
                 if(response.getBoolResponse()){
                     Toast.makeText(this, response.getMessageResponse(), Toast.LENGTH_SHORT).show();
+                    Util.createNotification(this, R.id.btnEliminar, ListaPersonasActivity.class,
+                            "Registro eliminado", "Has eliminado a: " + tvNombrePersona.getText());
                     Intent intent = new Intent(MostrarPersonaActivity.this, Activity_Home.class);
                     startActivity(intent);
                     finish();

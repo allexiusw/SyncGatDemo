@@ -170,7 +170,8 @@ public class PersonaService implements IPersonaService {
 
         GenericObjectResponse response = null;
         //Agrega los nuevos valores al documento
-        mutableDoc.setBoolean("IsDeleted", true);
+        mutableDoc.setBoolean("IsDeleted", true)
+            .setBoolean("IsPersona", false);
 
         try {
             //Actualiza los valores en la BD y devuelve true con el id del documento
