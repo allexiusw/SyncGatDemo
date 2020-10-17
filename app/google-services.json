@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "996059645206",
+    "firebase_url": "https://syncgatdemo.firebaseio.com",
+    "project_id": "syncgatdemo",
+    "storage_bucket": "syncgatdemo.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:996059645206:android:aad4aef05215648c753c37",
+        "android_client_info": {
+          "package_name": "org.allex.task.syngatdemo"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "996059645206-i541kkdoar3o7ielco4jnbele7u7qd3l.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCnApVGfhVUwO8Llum_y21x7HwkgDAy7H8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "996059645206-i541kkdoar3o7ielco4jnbele7u7qd3l.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
