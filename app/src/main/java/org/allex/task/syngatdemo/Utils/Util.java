@@ -39,7 +39,6 @@ public class Util {
 
     public static void createNotification(Context context, int notificationId, Class activityClass,
                                           String notificationTitle, String notificationContent, String channelId){
-       //TODO: Restringir canal de admin para dispositivos mayores a API 26
         Intent intent = new Intent(context, activityClass);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, intent, 0);
