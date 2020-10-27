@@ -11,7 +11,6 @@ import android.os.Build;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import androidx.annotation.RequiresApi;
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
 
@@ -19,7 +18,6 @@ import org.allex.task.syngatdemo.R;
 
 public class Util {
 
-    private static final Boolean boolVersionCode = Build.VERSION.SDK_INT >= Build.VERSION_CODES.O;
 
    public static void limpiarEditText(EditText[] editTexts){
         for (EditText editText : editTexts){
@@ -37,16 +35,19 @@ public class Util {
         return true;
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.O)
-    public static void createNotification(Context context, int notificationId, Class activityClass, String notificationTitle, String notificationContent){
-        createNotificationChannel(context);
+    public static void createNotification(Context context, int notificationId, Class activityClass,
+                                          String notificationTitle, String notificationContent, String channelId){
+       if(channelId == context.getString(R.string.admin_notification_channel))
+           createAdminNotificationChannel(context);
+       else
+            createDefaultNotificationChannel(context);
         Intent intent = new Intent(context, activityClass);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, intent, 0);
 
-        if(boolVersionCode){
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
             NotificationCompat.Builder builder = new NotificationCompat.Builder(
-                    context, "local")
+                    context, channelId)
                     .setSmallIcon(R.drawable.ic_launcher_foreground)
                     .setContentTitle(notificationTitle)
                     .setContentText(notificationContent)
@@ -68,13 +69,24 @@ public class Util {
         }
    }
 
-    @RequiresApi(api = Build.VERSION_CODES.O)
-    private static void createNotificationChannel(Context context){
-        if(boolVersionCode){
-            CharSequence name = "local";
-            String description = "local_channel";
+    private static void createDefaultNotificationChannel(Context context){
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
+            CharSequence name = "default";
+            String description = "default_channel";
             int importance = NotificationManager.IMPORTANCE_DEFAULT;
-            NotificationChannel channel = new NotificationChannel("local", name, importance);
+            NotificationChannel channel = new NotificationChannel(context.getString(R.string.default_notification_channel), name, importance);
+            channel.setDescription(description);
+            NotificationManager notificationManager = context.getSystemService(NotificationManager.class);
+            notificationManager.createNotificationChannel(channel);
+        }
+    }
+
+    private static void createAdminNotificationChannel(Context context){
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
+            CharSequence name = "admin";
+            String description = "admin_channel";
+            int importance = NotificationManager.IMPORTANCE_HIGH;
+            NotificationChannel channel = new NotificationChannel(context.getString(R.string.admin_notification_channel), name, importance);
             channel.setDescription(description);
             NotificationManager notificationManager = context.getSystemService(NotificationManager.class);
             notificationManager.createNotificationChannel(channel);

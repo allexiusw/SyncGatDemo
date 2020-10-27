@@ -7,7 +7,8 @@
     <string name="fecha_nacimiento">Fecha de nacimiento</string>
     <string name="guardar">Guardar</string>
     <string name="cancelar">Cancelar</string>
-    <string name="default_notification_channel">default_channel</string>
+    <string name="default_notification_channel">default</string>
+    <string name="admin_notification_channel">admin</string>
 
     <!--Activity HOME -->
     <string name="bienvenida"> ¡Bienvenido a Registro Amigos!</string>

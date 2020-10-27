@@ -32,6 +32,7 @@ public class MessagingService extends FirebaseMessagingService {
         Log.d("firebase", remoteMessage.getFrom());
         Log.d("firebase", "Message data payload: " + remoteMessage.getData());
         Util.createNotification(this, 679383850, Activity_Home.class,
-                remoteMessage.getNotification().getTitle(), remoteMessage.getNotification().getBody());
+                remoteMessage.getNotification().getTitle(), remoteMessage.getNotification().getBody(),
+                remoteMessage.getNotification().getChannelId());
     }
 }
