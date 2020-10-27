@@ -74,7 +74,9 @@ public class MostrarPersonaActivity extends AppCompatActivity implements View.On
                 if(response.getBoolResponse()){
                     Toast.makeText(this, response.getMessageResponse(), Toast.LENGTH_SHORT).show();
                     Util.createNotification(this, R.id.btnEliminar, ListaPersonasActivity.class,
-                            "Registro eliminado", "Has eliminado a: " + tvNombrePersona.getText());
+                            "Registro eliminado",
+                            "Has eliminado a: " + tvNombrePersona.getText(),
+                            getString(R.string.default_notification_channel));
                     Intent intent = new Intent(MostrarPersonaActivity.this, Activity_Home.class);
                     startActivity(intent);
                     finish();
