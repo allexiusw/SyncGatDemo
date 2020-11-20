@@ -1,3 +1,30 @@
 <resources>
     <string name="app_name">SynGatDemo</string>
+    <string name="primer_nombre">Primer nombre</string>
+    <string name="segundo_nombre">Segundo nombre</string>
+    <string name="primer_apellido">Primer apellido</string>
+    <string name="segundo_apellido">Segundo apellido</string>
+    <string name="fecha_nacimiento">Fecha de nacimiento</string>
+    <string name="guardar">Guardar</string>
+    <string name="cancelar">Cancelar</string>
+    <string name="default_notification_channel">default</string>
+    <string name="admin_notification_channel">admin</string>
+
+    <!--Activity HOME -->
+    <string name="bienvenida"> ¡Bienvenido a Registro Amigos!</string>
+    <string name="Explicacion">
+        Esta es una aplicacion para  registar datos peronales de peronas.
+        Aqui podras, crear, modificar,buscar y eliminar el reistro que desea.
+        Su finalidad  es servir de fuente de información necesaria para los datos de tus amigos.
+    </string>
+    <string name="Crear">Crear</string>
+    <string name="Eliminar">Eliminar</string>
+    <string name="Consulatr">Consulatr</string>
+    <string name="Modificar">Editar</string>
+    <string name="Info"> Información </string>
+    <!--Texto de cada Item -->
+    <string name="nombreItem">Nombre y Apellido </string>
+
+    <!--Name App Bar-->
+    <string name="title_list">Listado de Personas</string>
 </resources>
